@@ -16,7 +16,7 @@ const appElement = document.getElementById("app");
         const image = document.createElement('img');
         image.className = 'img';
         image.src = `${imageUrl}`;
-        image.src = imageUrl.slice(1, -1); // Remove first and last character (assuming quotes)
+       // image.src = imageUrl.slice(1, -1); // Remove first and last character (assuming quotes)
         image.alt = "New Product"; // Add alt attribute
       //Append image to container (optional)
       imageContainer.appendChild(image);
