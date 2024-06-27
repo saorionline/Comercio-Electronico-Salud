@@ -33,7 +33,7 @@ body::before {
 }
 
 .card {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.5rem;
   grid-row-gap: 1.5em;
   display: grid;
@@ -55,14 +55,10 @@ section  {
 	display: block
 }
 
-img {
+img, .img  {
   width: 100%;
   height: auto;
-   border-radius: 5px 5px 0 0; 
-} 
-.img {
-  width: 100%;
-  height: auto;
+
    border-radius: 5px 5px 0 0; 
 } 
 

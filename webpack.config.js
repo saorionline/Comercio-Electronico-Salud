@@ -1,4 +1,6 @@
 const path = require('path'); 
+const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin'); 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const CopyPlugin = require('copy-webpack-plugin'); 
@@ -20,7 +22,7 @@ module.exports = {
     entry: './src/index.js', 
     // Output configuration 
     output: { 
-        filename: 'bundle.js', 
+        filename: '[name].bundle.js', 
         path: path.resolve(__dirname, 'dist'), // Output directory 
         assetModuleFilename: 'assets/images/[hash][ext][query]',
         clean: true, // Enable cleaning of the output directory
@@ -65,6 +67,7 @@ module.exports = {
             }, 
             // Plugins configuration
     plugins: [
+        new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
           template: './src/index.html', // Use your HTML template
         }),
@@ -73,8 +76,14 @@ module.exports = {
         }),
         new CopyPlugin({
           patterns: [
-            { from: 'src/assets', to: 'assets' }, // Copy assets folder
+            {
+              from: path.resolve(__dirname, 'src', "assets/images"),
+              to: "assets/images"
+          }
           ],
+        }),
+        new webpack.DefinePlugin({
+          'process.env.PLATZI_API': JSON.stringify('https://api.escuelajs.co/api/v1/products'),
         }),
     new CssMinimizerPlugin(), // Minify CSS in production mode
     new ProgressWebpackPlugin(), // Show progress during build
