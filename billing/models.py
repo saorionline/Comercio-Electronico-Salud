@@ -26,4 +26,8 @@ class Patient(models.Model):
         from datetime import date
         today = date.today()
         # logic here...
-        return True # (simplified for this example)
+        age = today.year - self.date_of_birth.year - (
+            (today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day)
+        )
+        return age < 18
+        # (simplified for this example)  return True
